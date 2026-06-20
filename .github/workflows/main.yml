@@ -1,8 +1,17 @@
 name: NodeJS
 
 on:
-  workflow_dispatch: 
-
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Which environment to deploy to?'
+        required: true
+        default: 'dev-1'
+        type: choice
+        options:
+          - dev-1
+          - dev-2
+          - master
 jobs:
   build:
     runs-on: ubuntu-latest
