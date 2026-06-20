@@ -1,10 +1,34 @@
-name: project2
-on: workflow_dispatch
+name: Node.js CI
+
+on:
+  pull_request:
+    branches: [ dev-1 ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: CheckoutCode
+    # Step 1: Clone the repository onto the runner
+      - name: Checkout repository
         uses: actions/checkout@v6
-        env:
-          SUPER_SECRET_TOKEN: ${{ secrets.SUPER_SECRET_TOKEN }}
+  
+      # Step 2: Install Node.js and configure dependency caching
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '18' # Specify your required Node.js version
+  
+      # Step 3: Clean install project dependencies
+      - name: Install dependencies
+        run: npm install
+  
+      # Step 4: Execute test suite
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm build
+
+      - name: Deploy
+        run: echo "Deploying to Production Server..."
