@@ -37,5 +37,12 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Artifact Build
+        uses: actions/upload-artifact@v6
+        with:
+          name: artifact-1
+          path: |
+              package*
+
       - name: Deploy
         run: echo "Deploying to Production Server..."
