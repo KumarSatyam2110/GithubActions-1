@@ -1,4 +1,4 @@
-name: Node.js CI
+name: NodeJS
 
 on:
   workflow_dispatch: 
@@ -21,13 +21,12 @@ jobs:
       # Step 3: Clean install project dependencies
       - name: Install dependencies
         run: npm install
-  
-      # Step 4: Execute test suite
-      - name: Run tests
-        run: npm test
-
+      # Step 4: Execute Build & test suite
       - name: Build
         run: npm build
+      
+      - name: Run tests
+        run: npm test
 
       - name: Deploy
         run: echo "Deploying to Production Server..."
