@@ -32,6 +32,8 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+              npm-cache-
   
       # Step 3: Clean install project dependencies
       - name: Install dependencies
