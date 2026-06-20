@@ -28,12 +28,12 @@ jobs:
           node-version: '18' # Specify your required Node.js version
 
       - name: Cache Dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-              npm-cache-
+            ${{ runner.os }}-node-
   
       # Step 3: Clean install project dependencies
       - name: Install dependencies
